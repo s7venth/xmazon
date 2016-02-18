@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Xmazon.Login">
+	<ContentPage.Content>
+
+
+      <StackLayout BackgroundColor="#3C697E" Spacing="10" >
+        <StackLayout  Spacing="10" VerticalOptions="CenterAndExpand" Padding="20">
+          
+          <Entry  Placeholder="Identifiant" x:Name="loginEntry" />
+          <Entry  IsPassword="true" Placeholder="Mot de pass" x:Name="passwordEntry" />
+          <Button  BackgroundColor="#43E56A" Text="Connexion" Clicked="OnLoginClicked"></Button>
+          <Button  BackgroundColor="#800080" Text="Inscription" Clicked="OnInsctiptionClicked"></Button>
+
+        </StackLayout>
+
+      </StackLayout>   
+          
+ 
+
+	</ContentPage.Content>
+</ContentPage>
