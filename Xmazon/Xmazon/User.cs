@@ -42,7 +42,7 @@ namespace Xmazon
 			var result = JsonValue.Parse (json.ToString ());
 
 			Console.WriteLine ("\n \n \n \n========WEBSERVICE======= ");
-			//Console.WriteLine ("user is created : {0}",result["uid"]);
+			Console.WriteLine ("user is created : {0}",result["uid"]);
 
 
 		}

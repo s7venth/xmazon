@@ -28,19 +28,26 @@ namespace Xmazon
 			WebService webservice = new WebService();
 
 			JsonValue json = await webservice.Call (WebService.OAUTH_TOKEN, WebService.Method.POST, null, body, null);
-			var result = JsonValue.Parse (json.ToString ());
+			if (json != null) {
+				var result = JsonValue.Parse (json.ToString ());
 
-			Console.WriteLine ("\n \n \n \n========WEBSERVICE======= ");
+				Console.WriteLine ("\n \n \n \n========WEBSERVICE======= ");
 
-			if (result ["access_token"]) {
-				Console.WriteLine ("user is loged in: {0}", result ["access_token"]);
-				await Navigation.PushAsync (new Products ());
+				if (result.ContainsKey ("code") && result ["code"].Equals ("400")) {
+				
+				} else {
+					if ((string)result ["access_token"] != null) {
+				
+						Console.WriteLine ("user is loged in: {0}", result ["access_token"]);
+						await Navigation.PushAsync (new Products ());
+
+					}
+				}
 
 			}
-
 		}
 
-		async void OnLoginClicked (object sender, EventArgs e)
+		 void OnLoginClicked (object sender, EventArgs e)
 		{
 			string username, password;
 			username = loginEntry.Text;

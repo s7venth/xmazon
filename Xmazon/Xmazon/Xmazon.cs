@@ -46,9 +46,7 @@ namespace Xmazon
 
 			Console.WriteLine ("\n \n \n \n WEBSERVICE ");
 			Console.WriteLine ("token is : {0}",result["access_token"]);
-
 			App.token = result ["access_token"];
-
 		}
 
 
