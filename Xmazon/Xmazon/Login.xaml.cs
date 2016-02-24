@@ -39,6 +39,8 @@ namespace Xmazon
 					if ((string)result ["access_token"] != null) {
 				
 						Console.WriteLine ("user is loged in: {0}", result ["access_token"]);
+						App.token = result ["access_token"];
+						Console.WriteLine (App.token);
 						await Navigation.PushAsync (new Products ());
 
 					}
