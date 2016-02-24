@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Xmazon
 {
-	public partial class CategoriesList : ContentPage
+	public partial class CategoryList : ContentPage
 	{
-		public CategoriesList ()
+		public CategoryList ()
 		{
 			InitializeComponent ();
 		}

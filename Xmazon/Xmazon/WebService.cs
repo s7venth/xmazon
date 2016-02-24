@@ -9,11 +9,11 @@ using System.Text;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-
 namespace Xmazon
 {
 	public class WebService
 	{
+		private HttpClient httpClient;
 		public enum Method {
 			GET,
 			POST,
@@ -21,36 +21,23 @@ namespace Xmazon
 			DELETE
 		};
 
-		// ENDPOINT
-		public const string SERVER_ENDPOINT = "http://xmazon.appspaces.fr";
-
-		// RESOURCES
-		public const string OAUTH_RESOURCE = SERVER_ENDPOINT + "/oauth";
-		public const string AUTH_RESOURCE = SERVER_ENDPOINT + "/auth";
-		public const string STORE_RESOURCE = SERVER_ENDPOINT + "/store";
-		public const string CATEGORY_RESOURCE = SERVER_ENDPOINT + "/category";
-		public const string PRODUCT_RESOURCE = SERVER_ENDPOINT + "/product";
-
-		// WEB SERVICES
-		public const string OAUTH_TOKEN = OAUTH_RESOURCE + "/token";
-
-		public const string AUTH_SUBSCRIBE = AUTH_RESOURCE + "/subscribe";
-
-		public const string STORE_LIST = STORE_RESOURCE + "/list";
-
-		public const string CATEGORY_LIST = CATEGORY_RESOURCE + "/list";
-
-		public const string PRODUCT_LIST = PRODUCT_RESOURCE + "/list";
-
-		private HttpClient httpClient;
+		// URL 
+		public const string OAUTH_TOKEN_URL =  "http://xmazon.appspaces.fr/oauth/token";
+		public const string AUTH_RESOURCE =  "http://xmazon.appspaces.fr/auth/subscribe";
+		public const string STORE_RESOURCE =  "http://xmazon.appspaces.fr/store/list";
+		public const string CATEGORY_RESOURCE =  "http://xmazon.appspaces.fr/category/list";
+		public const string PRODUCT_LIST_URL =  "http://xmazon.appspaces.fr/product/list";
 
 		public WebService ()
 		{
 			httpClient = new HttpClient ();
 		}
 
-		public async Task<System.Json.JsonValue> Call(string url, Method method, 
-			Dictionary<string, string> getParams, Dictionary<string, string> postParams, Dictionary<string, string> headers) 
+		public async Task<System.Json.JsonValue> Call(string url, 
+			Method method, 
+			Dictionary<string, string> getParams, 
+			Dictionary<string, string> postParams, 
+			Dictionary<string, string> headers) 
 		{
 			string encodedUrl = GetUrlEncoded (url, getParams);
 

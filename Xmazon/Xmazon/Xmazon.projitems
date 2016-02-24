@@ -21,6 +21,15 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)WebService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)model\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)model\Product.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)model\Store.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProductList.xaml.cs">
+      <DependentUpon>ProductList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CategoryList.xaml.cs">
+      <DependentUpon>CategoryList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Products.xaml">
@@ -32,5 +41,14 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Register.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ProductList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CategoryList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)model\" />
   </ItemGroup>
 </Project>
