@@ -5,77 +5,22 @@ using System.Json;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Linq.Dynamic;
+
 
 namespace Xmazon
 {
+	
+
 	public class App : Application
 	{
-		/* solution 1
-		private async Task<JsonValue> FetchWeatherAsync (string url)
-		{
-			// Create an HTTP web request using the URL:
-			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (url));
-			request.ContentType = "application/json";
-			request.Method = "GET";
 
-			// Send the request to the server and wait for the response:
-			using (WebResponse response = await request.GetResponseAsync ())
-			{
-				// Get a stream representation of the HTTP web response:
-				using (Stream stream = response.GetResponseStream ())
-				{
-					// Use this stream to build a JSON document object:
-					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-					Console.Out.WriteLine("Response: {0}", jsonDoc.ToString ());
-
-					// Return the JSON document:
-					return jsonDoc;
-				}
-			}
-		}
-		*/
-
-        //solution 2
-
-		private void fetchNewton(String url){
-			HttpClient client = new HttpClient();
-
-			//Add DefaultRequestHeader to Json
-			client.DefaultRequestHeaders.Accept.Add(new  
-				MediaTypeWithQualityHeaderValue("application/json"));
-
-			HttpResponseMessage response = 
-				client.GetAsync(url).Result;
-			
-			//Http Status code 200
-			if (response.IsSuccessStatusCode)
-			{
-				//Read response content result into string variable
-				string strJson = response.Content.ReadAsStringAsync().Result;
-				//Deserialize the string to JSON object
-				dynamic jObj = (JObject)JsonConvert.DeserializeObject(strJson);
-
-                    
-				var time = jObj ["result"]["time"];
-				var date = jObj["result"]["date"];
-				Console.WriteLine ("time is : {0}", time);
-				Console.WriteLine ("date is : {0}", date);
-	
-			}
-
-		}
-
-
-
-
+		public static string token = null;
 
 
 		public App ()
@@ -85,13 +30,35 @@ namespace Xmazon
 
 		}
 
+
+		public async void getToken(){
+
+			Dictionary<string, string> body = new Dictionary<string, string> ();
+			body.Add ("grant_type", "client_credentials");
+			body.Add ("client_id", "e99d11d1-6504-4abf-8aa0-886e4affe6a0");
+			body.Add ("client_secret", "d650639e9fe3110f4024149f0d98e04cbde0305d");
+
+			WebService webservice = new WebService();
+			JsonValue json = await webservice.Call (WebService.OAUTH_TOKEN, WebService.Method.POST, null, body, null);
+
+
+			var result = JsonValue.Parse (json.ToString ());
+
+			Console.WriteLine ("\n \n \n \n WEBSERVICE ");
+			Console.WriteLine ("token is : {0}",result["access_token"]);
+
+			App.token = result ["access_token"];
+
+		}
+
+
 		protected override void OnStart ()
 		{
-
-			//FetchWeatherAsync ("http://appspaces.fr/esgi/jsontest.php");
-		    fetchNewton ("http://appspaces.fr/esgi/jsontest.php");
-			// Handle when your app starts
+			getToken ();
 		}
+
+
+
 
 		protected override void OnSleep ()
 		{

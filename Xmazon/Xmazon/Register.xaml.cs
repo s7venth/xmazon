@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Json;
 
 using Xamarin.Forms;
 
@@ -13,6 +14,9 @@ namespace Xmazon
 		}
 
 
+
+			
+
 		async void OnValidClicked (object sender, EventArgs e)
 		{
 			string nom, prenom, email, password,passwordConf;
@@ -22,11 +26,15 @@ namespace Xmazon
 			password = passEntry.Text;
 			passwordConf = confEntry.Text;
 
+
 		
 			if (!nom.Equals ("") && !prenom.Equals ("") && !email.Equals ("") && !password.Equals ("") && !passwordConf.Equals ("") && password.Equals(passwordConf)) {
 				
 				Console.WriteLine ("user infos : \n nom = {0} \n prenom = {1} \n email = {2} \n password = {3} \n password conf = {4} \n",
 					nom, prenom,email,password,passwordConf);
+
+				User user = new User (email, password, prenom, nom);
+				user.Rigister ();
 
 				await Navigation.PushAsync (new Products ());
 			}

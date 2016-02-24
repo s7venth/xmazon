@@ -19,6 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)WebService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Products.xaml">
