@@ -23,9 +23,9 @@ namespace Xmazon
 
 		// URL 
 		public const string OAUTH_TOKEN_URL =  "http://xmazon.appspaces.fr/oauth/token";
-		public const string AUTH_RESOURCE =  "http://xmazon.appspaces.fr/auth/subscribe";
-		public const string STORE_RESOURCE =  "http://xmazon.appspaces.fr/store/list";
-		public const string CATEGORY_RESOURCE =  "http://xmazon.appspaces.fr/category/list";
+		public const string AUTH_SUBSCRIBE_URL =  "http://xmazon.appspaces.fr/auth/subscribe";
+		public const string STORE_LIST_URL =  "http://xmazon.appspaces.fr/store/list";
+		public const string CATEGORY_LIST_URL =  "http://xmazon.appspaces.fr/category/list";
 		public const string PRODUCT_LIST_URL =  "http://xmazon.appspaces.fr/product/list";
 
 		public WebService ()
